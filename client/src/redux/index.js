@@ -13,8 +13,11 @@ const composeEnhancers = composeWithDevTools({
   port: 3000,
 });
 
+const initialState = {};
+
 const store = createStore(
   rootReducer,
+  initialState,
   composeEnhancers(applyMiddleware(...middleware))
 );
 export default store;

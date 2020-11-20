@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 // import MontserratBlack from './assets/fonts/Montserrat/Montserrat-Black.ttf';
 // import MontserratBlackItalic from './assets/fonts/Montserrat/Montserrat-BlackItalic.ttf';
 // import MontserratBold from './assets/fonts/Montserrat/Montserrat-Bold.ttf';
@@ -31,29 +32,29 @@ export const theme = createMuiTheme({
   spacing: 4,
   palette: {
     primary: {
-      main: '#D72020',
-      disabled: '#D72020',
+      main: '#007bff',
+      disabled: '#fff06c',
     },
     secondary: {
       main: '#007bff',
       disabled: '#007bff',
     },
     error: {
-      main: '#007bff',
+      main: '#DB3838',
     },
     warning: {
-      main: '#007bff',
+      main: '#FFC92F',
     },
     info: {
-      main: '#007bff',
+      main: '#5385EE',
     },
     success: {
-      main: '#007bff',
+      main: '#6EBE19',
     },
     text: {
-      primary: '#007bff',
-      secondary: '#007bff',
-      disabled: '#007bff',
+      primary: '#000000',
+      secondary: '#D2D0D0',
+      disabled: '#D2D0D0',
     },
   },
   typography: {
@@ -66,5 +67,11 @@ export const theme = createMuiTheme({
     //         },
     //       },
     //     },
+  },
+});
+
+export default makeStyles({
+  root: {
+    padding: 100,
   },
 });
