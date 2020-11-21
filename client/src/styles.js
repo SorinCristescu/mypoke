@@ -36,7 +36,7 @@ export const theme = createMuiTheme({
       disabled: '#fff06c',
     },
     secondary: {
-      main: '#007bff',
+      main: '#ffffff',
       disabled: '#007bff',
     },
     error: {

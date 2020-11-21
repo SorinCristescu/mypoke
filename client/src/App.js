@@ -1,4 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { loadUser } from './redux/auth/actions';
+import setAuthToken from './utils/setAuthToken';
+import { useDispatch } from 'react-redux';
 
 // Routing
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -20,9 +23,20 @@ const Login = lazy(() => import('./pages/login'));
 const Register = lazy(() => import('./pages/register'));
 const Pokeboard = lazy(() => import('./pages/pokeboard'));
 const Details = lazy(() => import('./pages/details'));
+const PrivateRoute = lazy(() => import('./routing/privateRoute'));
 
-function App() {
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -35,7 +49,7 @@ function App() {
               <Switch>
                 <Route path="/login" exact component={Login} />
                 <Route path="/register" exact component={Register} />
-                <Route path="/pokeboard" exact component={Pokeboard} />
+                <PrivateRoute path="/pokeboard" exact component={Pokeboard} />
                 <Route path="/details/:id" exact component={Details} />
               </Switch>
             </Container>
@@ -45,6 +59,6 @@ function App() {
       </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default App;
