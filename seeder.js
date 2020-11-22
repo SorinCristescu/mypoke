@@ -1,11 +1,12 @@
 const fs = require('fs');
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const colors = require('colors');
 
 // Load env vars
-dotenv.config({ path: '.config/config.env' });
-
+require('dotenv').config({
+  path: './config/config.env',
+});
+console.log(process.env.MONGO_URI);
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,

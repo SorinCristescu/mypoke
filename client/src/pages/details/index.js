@@ -1,8 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Chart from '../../components/chart';
+// Styles
+import useStyles from './styles';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 const Details = (props) => {
-  return <div>Details page</div>;
+  const classes = useStyles();
+  const dataSet = [100, 19, 3, 5, 2, 3];
+  // const data = [HP, Attack, Defense, SpAttack, SpDefense, Speed];
+  return (
+    <Container maxWidth="md">
+      <Paper className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={6} justify="center" alignItems="center"></Grid>
+          <Grid item xs={6} justify="center" alignItems="center">
+            <Typography variant="h6">Pokemon Details</Typography>
+            <Chart dataSet={dataSet} />
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
+  );
 };
 
 Details.propTypes = {};

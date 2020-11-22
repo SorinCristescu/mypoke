@@ -1,24 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 // IMPORT CONTROLLERS
 // ==================
-const {
-  getPokemonsController,
-  getPokemonController,
-} = require('../../controllers/pokemons.js');
+const { getAllPokemons } = require('../../controllers/pokemons');
 
 // ROUTES
 // ======
-
-// @route GET api/v1/pokemons
+// @route Get api/v1/pokemons
 // @desc Get all pokemons
-// @access  Public
-router.get('/pokemons', getPokemonsController);
-
-// @route GET api/v1/pokemons/:id
-// @desc Get pokemon by id
-// @access  Public
-router.get('/pokemons/:id', getPokemonController);
+// @access  Private
+router.get('/', auth, getAllPokemons);
 
 module.exports = router;

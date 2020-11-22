@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Components
 import Layout from './layout';
 import Loader from './components/loader';
+import PrivateRoute from './routing/privateRoute';
+import Alert from './components/alert';
 
 // Styles
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -23,7 +25,7 @@ const Login = lazy(() => import('./pages/login'));
 const Register = lazy(() => import('./pages/register'));
 const Pokeboard = lazy(() => import('./pages/pokeboard'));
 const Details = lazy(() => import('./pages/details'));
-const PrivateRoute = lazy(() => import('./routing/privateRoute'));
+const Pokemons = lazy(() => import('./pages/pokemons'));
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -41,21 +43,23 @@ const App = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout>
-          {/* <ErrorBoundary> */}
-          <Suspense fallback={<Loader />}>
-            <Route path="/" exact component={Home} />
-            <Container className={classes.root}>
-              <Switch>
-                <Route path="/login" exact component={Login} />
-                <Route path="/register" exact component={Register} />
+        {/* <ErrorBoundary> */}
+        <Suspense fallback={<Loader />}>
+          <Container className={classes.root}>
+            <Alert />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/register" exact component={Register} />
+              <Layout>
+                <PrivateRoute path="/pokemons" exact component={Pokemons} />
                 <PrivateRoute path="/pokeboard" exact component={Pokeboard} />
-                <Route path="/details/:id" exact component={Details} />
-              </Switch>
-            </Container>
-          </Suspense>
-          {/* </ErrorBoundary> */}
-        </Layout>
+                <PrivateRoute path="/details" exact component={Details} />
+              </Layout>
+            </Switch>
+          </Container>
+        </Suspense>
+        {/* </ErrorBoundary> */}
       </ThemeProvider>
     </Router>
   );

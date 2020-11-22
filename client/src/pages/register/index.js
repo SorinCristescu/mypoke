@@ -17,6 +17,7 @@ const Register = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const alert = useSelector((state) => state.alert);
   const [postData, setPostData] = useState({
     name: '',
     email: '',
@@ -36,6 +37,7 @@ const Register = (props) => {
         password,
       };
       dispatch(register(newUser));
+
       setPostData({
         name: '',
         email: '',
@@ -56,7 +58,7 @@ const Register = (props) => {
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to="/pokeboard" />;
+    return <Redirect to="/pokemons" />;
   }
   return (
     <Container maxWidth="xs">

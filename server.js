@@ -34,10 +34,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // MOUNT ROUTES
 // ============
-const authRouter = require('./routes/api/auth.js');
-const pokemonsRouter = require('./routes/api/pokemons.js');
-// const userRouter = require('./routes/api/user.js');
-// const { options } = require('./routes/api/auth.js');
+const authRouter = require('./routes/api/auth');
+const pokeboardRouter = require('./routes/api/pokeboard');
+const pokemonsRouter = require('./routes/api/pokemons');
 
 // SERVING STATIC FILES
 // ====================
@@ -45,9 +44,9 @@ app.use(express.static('public'));
 
 // USE ROUTES
 // ==========
-app.use('/api/v1', authRouter);
-app.use('/api/v1', pokemonsRouter);
-// app.use('/api/v1', userRouter);
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/pokeboard', pokeboardRouter);
+app.use('/api/v1/pokemons', pokemonsRouter);
 
 app.use((req, res) => {
   res.status(404).json({

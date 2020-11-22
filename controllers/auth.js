@@ -4,8 +4,8 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// REGISTER CONTROLLER
-// ===================
+// REGISTER
+// ========
 exports.registerValidation = [
   check('name', 'Name is required.').not().isEmpty(),
   check('email', 'Please include a valid email.').isEmail(),
@@ -14,7 +14,7 @@ exports.registerValidation = [
     'Please enter a password with 6 or more characters.'
   ).isLength({ min: 6 }),
 ];
-exports.registerController = async (req, res) => {
+exports.register = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -74,9 +74,9 @@ exports.registerController = async (req, res) => {
   }
 };
 
-// AUTH CONTROLLER
-// ===================
-exports.authController = async (req, res) => {
+// AUTH
+// ====
+exports.authUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
@@ -86,13 +86,13 @@ exports.authController = async (req, res) => {
   }
 };
 
-// LOGIN CONTROLLER
-// ===================
+// LOGIN
+// =====
 exports.loginValidation = [
   check('email', 'Please include a valid email.').isEmail(),
   check('password', 'Password is required.').exists(),
 ];
-exports.loginController = async (req, res) => {
+exports.login = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });

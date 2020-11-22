@@ -17,11 +17,6 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  pokeboard: {
-    type: [Object],
-    required: true,
-    default: [],
-  },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   createdAt: {

@@ -31,11 +31,11 @@ const CardItem = ({ item }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        {/* <Button size="small" color="primary">
           Share
-        </Button>
+        </Button> */}
         <Button size="small" color="primary">
-          Learn More
+          + ADD
         </Button>
       </CardActions>
     </Card>

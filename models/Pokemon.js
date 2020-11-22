@@ -28,11 +28,11 @@ const PokemonSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-    ['Sp. Attack']: {
+    SpAttack: {
       type: Number,
       required: true,
     },
-    ['Sp. Defense']: {
+    SpDefense: {
       type: Number,
       required: true,
     },

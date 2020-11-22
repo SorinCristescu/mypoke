@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 // Components
 import Header from '../components/header';
-import Alert from '../components/alert';
 
 // Styles
 import useStyles from './styles';
@@ -16,7 +15,7 @@ const Layout = ({ children }) => {
   return (
     <Box className={classes.root}>
       <Header />
-      <Alert />
+
       {children}
     </Box>
   );

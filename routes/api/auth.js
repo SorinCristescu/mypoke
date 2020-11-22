@@ -5,11 +5,11 @@ const router = express.Router();
 // ==================
 const {
   registerValidation,
-  registerController,
-  authController,
+  register,
+  authUser,
   //   activationController,
   loginValidation,
-  loginController,
+  login,
   //   forgotPasswordController,
   //   resetPasswordController,
   //   googleController,
@@ -26,17 +26,17 @@ const auth = require('../../middleware/auth');
 // @route POST api/v1/register
 // @desc Register user
 // @access  Public
-router.post('/register', registerValidation, registerController);
+router.post('/register', registerValidation, register);
 
 // @route GET api/v1/auth
 // @desc Get verifed user
 // @access  Private
-router.get('/auth', auth, authController);
+router.get('/', auth, authUser);
 
 // @route POST api/v1/auth
 // @desc Authenticate user & get token
 // @access  Public
-router.post('/login', loginValidation, loginController);
+router.post('/login', loginValidation, login);
 
 // @route GET api/v1/auth
 // @desc Get verifed user

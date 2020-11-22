@@ -43,7 +43,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   const body = JSON.stringify({ name, email, password });
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/register`,
+      `${process.env.REACT_APP_API_URL}/auth/register`,
       body,
       config
     );
@@ -73,7 +73,7 @@ export const login = ({ email, password }) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/login`,
+      `${process.env.REACT_APP_API_URL}/auth/login`,
       body,
       config
     );
