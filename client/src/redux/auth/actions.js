@@ -6,8 +6,6 @@ import {
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
@@ -18,10 +16,8 @@ export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-
   try {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth`);
-
     dispatch({
       type: USER_LOADED,
       payload: response.data,

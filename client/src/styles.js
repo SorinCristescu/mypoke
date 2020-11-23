@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#007bff',
+      main: '#47AFE7',
       disabled: '#fff06c',
     },
     secondary: {
@@ -31,20 +31,11 @@ export const theme = createMuiTheme({
   },
   typography: {
     fontFamily: ['Roboto', 'Arial'].join(','),
-
-    //     overrides: {
-    //       MuiCssBaseline: {
-    //         '@global': {
-    //           '@font-face': [roboto],
-    //         },
-    //       },
-    //     },
   },
 });
 
 export default makeStyles({
   wrapper: {
-    // padding: 100,
     width: '100%',
     height: 'auto',
     display: 'flex',

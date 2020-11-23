@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPokemon } from '../../redux/user/actions';
 
@@ -15,20 +15,17 @@ import Chip from '@material-ui/core/Chip';
 
 const Pokemon = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.loading);
   const pokemon = useSelector((state) => state.user.pokemon);
-  const dispatch = useDispatch();
-  const [poke, setPoke] = useState({});
-
   const id = props.match.params.id;
 
   useEffect(() => {
     dispatch(getPokemon(id));
-    setPoke(pokemon);
-  }, [dispatch, id, pokemon]);
+  }, [dispatch, id]);
 
   const displayPokemon = () => {
-    const { base, type, urlImage, name } = poke;
+    const { base, type, urlImage, name } = pokemon;
     const { HP, Attack, Defense, SpAttack, SpDefense, Speed } = base;
     const dataSet = [HP, Attack, Defense, SpAttack, SpDefense, Speed];
     return (
@@ -54,15 +51,16 @@ const Pokemon = (props) => {
               {name}
             </Typography>
             <div className={classes.chips}>
-              {type.map((chip, index) => (
-                <Chip
-                  key={index}
-                  className={classes.chip}
-                  color="primary"
-                  size="small"
-                  label={chip}
-                />
-              ))}
+              {type &&
+                type.map((chip, index) => (
+                  <Chip
+                    key={index}
+                    className={classes.chip}
+                    color="primary"
+                    size="small"
+                    label={chip}
+                  />
+                ))}
             </div>
             <Chart dataSet={dataSet} />
           </Grid>

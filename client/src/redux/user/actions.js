@@ -51,6 +51,7 @@ export const addPokemon = (pokemon) => async (dispatch) => {
       type: ADD_POKEMON_SUCCESS,
       payload: response.data,
     });
+    dispatch(setAlert('Pokemon successfully added!', 'success', true));
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -72,6 +73,7 @@ export const deletePokemon = (pokemonId) => async (dispatch) => {
       type: DELETE_POKEMON_SUCCESS,
       payload: response.data,
     });
+    dispatch(setAlert('Pokemon successfully deleted!', 'success', true));
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {

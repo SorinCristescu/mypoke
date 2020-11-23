@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addPokemon, deletePokemon } from '../../redux/user/actions';
-import history from '../../history';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -19,26 +19,24 @@ import useStyles from './styles';
 const CardItem = (props) => {
   const classes = useStyles();
 
-  const { id, name, type, urlImage } = props.item;
+  const { _id, name, urlImage } = props.item;
 
   const dispatch = useDispatch();
   const handleAddPokemon = (e) => {
     dispatch(addPokemon(props.item));
-    history.push('/pokeboard');
   };
   const handleDeletePokemon = (e) => {
     dispatch(deletePokemon(props.item));
   };
   return (
     <Card className={classes.root}>
-      <Link to={`/pokemon/${id}`}>
+      <Link to={`/pokemon/${_id}`}>
         <CardActionArea>
           <CardMedia className={classes.media} image={urlImage} />
           <CardContent>
             <Typography gutterBottom align="center" variant="h5" component="h2">
               {name}
             </Typography>
-
             <Typography
               gutterBottom
               variant="body1"
@@ -55,7 +53,7 @@ const CardItem = (props) => {
           <Fab
             size="medium"
             color="primary"
-            onClick={(e) => handleAddPokemon(e)}
+            onClick={handleAddPokemon}
             aria-label="add"
           >
             <AddIcon />
@@ -64,7 +62,7 @@ const CardItem = (props) => {
           <Fab
             size="medium"
             color="secondary"
-            onClick={(e) => handleDeletePokemon(e)}
+            onClick={handleDeletePokemon}
             aria-label="add"
           >
             <DeleteIcon />
@@ -73,6 +71,10 @@ const CardItem = (props) => {
       </CardActions>
     </Card>
   );
+};
+
+CardItem.propTypes = {
+  item: PropTypes.object.isRequired,
 };
 
 export default CardItem;

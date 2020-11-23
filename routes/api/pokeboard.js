@@ -5,10 +5,8 @@ const auth = require('../../middleware/auth');
 // IMPORT CONTROLLERS
 // ==================
 const {
-  addPokemonValidation,
   addPokemon,
   deletePokemon,
-  // getPokeboard,
   createOrUpdatePokeboard,
   getPokemon,
 } = require('../../controllers/pokeboard');

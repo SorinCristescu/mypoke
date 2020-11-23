@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/actions';
-import { setAlert } from '../../redux/alert/actions';
 import { Link, Redirect } from 'react-router-dom';
 
 // Styles
 import useStyles from './styles';
 import clsx from 'clsx';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -22,7 +18,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import Logo from '../../assets/images/pikachu.svg';
 
-const Login = (props) => {
+const Login = () => {
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
@@ -69,7 +65,7 @@ const Login = (props) => {
   }
   return (
     <div className={classes.root}>
-      <img className={classes.logo} src={Logo} />
+      <img className={classes.logo} src={Logo} alt="logo" />
       <Typography variant="h6">Wellcome to MyPoke</Typography>
       <form
         autoComplete="off"
@@ -87,7 +83,6 @@ const Login = (props) => {
             value={email}
             onChange={(e) => handleChange(e)}
           />
-
           <FormControl
             className={clsx(classes.margin, classes.textField)}
             variant="outlined"
@@ -118,7 +113,6 @@ const Login = (props) => {
             />
           </FormControl>
         </div>
-
         <Typography variant="p" component="p">
           Sign in for your account
         </Typography>
@@ -144,7 +138,5 @@ const Login = (props) => {
     </div>
   );
 };
-
-Login.propTypes = {};
 
 export default Login;

@@ -6,7 +6,6 @@ import { HorizontalBar } from 'react-chartjs-2';
 const Chart = ({ dataSet }) => {
   const data = {
     labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
-
     datasets: [
       {
         data: dataSet,
@@ -30,7 +29,6 @@ const Chart = ({ dataSet }) => {
       },
     ],
   };
-
   const options = {
     scales: {
       yAxes: [
@@ -61,6 +59,8 @@ const Chart = ({ dataSet }) => {
   );
 };
 
-Chart.propTypes = {};
+Chart.propTypes = {
+  dataSet: PropTypes.array.isRequired,
+};
 
 export default Chart;

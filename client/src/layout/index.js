@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
 // Components
 import Header from '../components/header';
@@ -10,16 +9,12 @@ import useStyles from './styles';
 const Layout = ({ children }) => {
   const classes = useStyles();
 
-  console.log('from layout', alert);
   return (
     <div className={classes.root}>
       <Header />
-
       {children}
     </div>
   );
 };
-
-Layout.propTypes = {};
 
 export default Layout;

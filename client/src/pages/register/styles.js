@@ -19,9 +19,7 @@ export default makeStyles({
     padding: '10px',
     marginTop: '20px',
   },
-  message: {
-    // marginTop: '20px',
-  },
+
   flag: {
     width: '25px',
     height: '25px',
@@ -39,9 +37,6 @@ export default makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textField: {
-    // margin: '10px 0',
-  },
   legend: {
     width: '100%',
     marginTop: '20px',
@@ -56,7 +51,4 @@ export default makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // fieldset: {
-  //   margin: '20px',
-  // },
 });

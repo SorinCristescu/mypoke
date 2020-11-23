@@ -7,27 +7,22 @@ exports.getAllPokemons = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     const pokemons = await Pokemon.find();
-
     const allPokemons = pokemons.map((pokemon) => {
-      const { id, type, urlImage } = pokemon;
-
+      const { _id, type, urlImage } = pokemon;
       let results = Object.keys(pokemon.name).map((key) => ({
         language: String(key),
         translation: pokemon.name[key],
       }));
-
       let newName = results
         .filter((result) => result.language === user.language)
         .map((item) => item.translation)[0];
-
       return {
-        id,
+        _id,
         type,
         name: newName,
         urlImage,
       };
     });
-
     res.status(200).json(allPokemons);
   } catch (err) {
     console.error(err.message);

@@ -19,9 +19,7 @@ exports.register = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-
   const { name, email, password, language } = req.body;
-
   try {
     // See if user exists
     let user = await User.findOne({ email });
@@ -36,7 +34,6 @@ exports.register = async (req, res) => {
       r: 'pg',
       d: 'mm',
     });
-
     user = new User({
       name,
       email,
@@ -47,9 +44,7 @@ exports.register = async (req, res) => {
 
     // Encrypt password
     const salt = await bcrypt.genSalt(10);
-
     user.password = await bcrypt.hash(password, salt);
-
     await user.save();
 
     // Return jsonwebtoken in order to login right away after register in frontend.
@@ -62,7 +57,7 @@ exports.register = async (req, res) => {
       payload,
       process.env.JWT_SECRET,
       {
-        expiresIn: 360000, //change to 1h. before deploy
+        expiresIn: 3600,
       },
       (err, token) => {
         if (err) throw err;
@@ -98,9 +93,7 @@ exports.login = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-
   const { email, password } = req.body;
-
   try {
     // See if user exists
     let user = await User.findOne({ email });
@@ -118,7 +111,6 @@ exports.login = async (req, res) => {
         .status(400)
         .json({ errors: [{ msg: 'Invalid credentials.' }] });
     }
-
     const payload = {
       user: {
         id: user.id,
@@ -128,7 +120,7 @@ exports.login = async (req, res) => {
       payload,
       process.env.JWT_SECRET,
       {
-        expiresIn: 360000, //change to 1h. before deploy
+        expiresIn: 3600,
       },
       (err, token) => {
         if (err) throw err;

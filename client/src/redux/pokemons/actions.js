@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { setAlert } from './../alert/actions';
-
 import { GET_ALL_POKEMONS_SUCCESS, GET_ALL_POKEMONS_FAIL } from './types';
 
 export const getAllPokemons = () => async (dispatch) => {
@@ -12,7 +11,6 @@ export const getAllPokemons = () => async (dispatch) => {
       type: GET_ALL_POKEMONS_SUCCESS,
       payload: response.data,
     });
-    // dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {

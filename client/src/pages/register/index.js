@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/actions';
-import { createAndUpdatePokeboard } from '../../redux/user/actions';
+
 import { setAlert } from '../../redux/alert/actions';
 import { Link, Redirect } from 'react-router-dom';
 
@@ -15,8 +14,6 @@ import Logo from '../../assets/images/pikachu.svg';
 // Styles
 import useStyles from './styles';
 import clsx from 'clsx';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -27,7 +24,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
@@ -37,7 +33,6 @@ const Register = (props) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
-  const alert = useSelector((state) => state.alert);
   const [postData, setPostData] = useState({
     name: '',
     email: '',
@@ -61,7 +56,6 @@ const Register = (props) => {
         language,
       };
       dispatch(register(newUser));
-      dispatch(createAndUpdatePokeboard());
       setPostData({
         name: '',
         email: '',
@@ -96,9 +90,8 @@ const Register = (props) => {
   return (
     <>
       <div className={classes.root}>
-        <img className={classes.logo} src={Logo} />
+        <img className={classes.logo} src={Logo} alt="logo" />
         <Typography variant="h6">Wellcome to MyPoke</Typography>
-
         <form
           autoComplete="off"
           noValidate
@@ -198,7 +191,13 @@ const Register = (props) => {
                     />
                   }
                   labelPlacement="top"
-                  label={<img className={classes.flag} src={EnglishFlag} />}
+                  label={
+                    <img
+                      className={classes.flag}
+                      src={EnglishFlag}
+                      alt="flag"
+                    />
+                  }
                 />
                 <FormControlLabel
                   name="language"
@@ -211,7 +210,9 @@ const Register = (props) => {
                     />
                   }
                   labelPlacement="top"
-                  label={<img className={classes.flag} src={ChinaFlag} />}
+                  label={
+                    <img className={classes.flag} src={ChinaFlag} alt="flag" />
+                  }
                 ></FormControlLabel>
                 <FormControlLabel
                   name="language"
@@ -224,7 +225,9 @@ const Register = (props) => {
                     />
                   }
                   labelPlacement="top"
-                  label={<img className={classes.flag} src={JapanFlag} />}
+                  label={
+                    <img className={classes.flag} src={JapanFlag} alt="flag" />
+                  }
                 ></FormControlLabel>
                 <FormControlLabel
                   name="language"
@@ -237,12 +240,13 @@ const Register = (props) => {
                     />
                   }
                   labelPlacement="top"
-                  label={<img className={classes.flag} src={FrenchFlag} />}
+                  label={
+                    <img className={classes.flag} src={FrenchFlag} alt="flag" />
+                  }
                 ></FormControlLabel>
               </div>
             </div>
           </FormControl>
-
           <Typography variant="p" component="p" className={classes.message}>
             Register your new account
           </Typography>
@@ -269,7 +273,5 @@ const Register = (props) => {
     </>
   );
 };
-
-Register.propTypes = {};
 
 export default Register;

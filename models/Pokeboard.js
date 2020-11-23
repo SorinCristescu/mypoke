@@ -7,8 +7,8 @@ const PokeboardSchema = new mongoose.Schema({
   },
   pokemons: [
     {
-      id: {
-        type: Number,
+      _id: {
+        type: String,
         required: true,
       },
       name: String,

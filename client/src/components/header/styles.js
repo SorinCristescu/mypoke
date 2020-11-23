@@ -2,11 +2,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   root: {
-    flexGrow: 1,
+    width: '100%',
   },
   toolbar: {
     padding: '0 80px',
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -15,14 +16,14 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'fex-start',
+    justifyContent: 'flex-start',
   },
   logout: {
     width: '50%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'fex-end',
+    justifyContent: 'flex-end',
   },
   logo: {
     width: '50px',

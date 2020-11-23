@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPokemons } from '../../redux/pokemons/actions';
+import { createAndUpdatePokeboard } from '../../redux/user/actions';
 
 import List from '../../components/list';
 import Loader from '../../components/loader';
@@ -17,21 +17,24 @@ const Pokemons = (props) => {
   const classes = useStyles();
   const pokemons = useSelector((state) => state.pokemons.pokemons);
   const loading = useSelector((state) => state.pokemons.loading);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const path = props.match.path;
   const [searchQuerry, setSearchQuerry] = useState('');
-  const [searchResults, setSearchResults] = useState(pokemons);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     dispatch(getAllPokemons());
-  }, []);
+    dispatch(createAndUpdatePokeboard());
+    setSearchResults(pokemons);
+  }, [dispatch, pokemons]);
 
-  // useEffect(() => {
-  //   const results = pokemons.filter((pokemon) =>
-  //     pokemon.name.english.toLowerCase().includes(searchQuerry)
-  //   );
-  //   setSearchResults(results);
-  // }, [searchQuerry]);
+  useEffect(() => {
+    const results = pokemons.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchQuerry)
+    );
+    setSearchResults(results);
+  }, [searchQuerry, pokemons]);
 
   const handleSearch = (e) => {
     setSearchQuerry(e.target.value);
@@ -44,7 +47,11 @@ const Pokemons = (props) => {
   return (
     <div className={classes.root}>
       <Typography variant="h5" align="center">
-        Pokemons
+        Wellcome {user.name}
+      </Typography>
+      <Typography variant="body1" align="center">
+        Now you can start choosing your favorite pokemons and add them to your
+        personal collection.
       </Typography>
       <div className={classes.search}>
         <InputBase
@@ -66,7 +73,7 @@ const Pokemons = (props) => {
             spacing={3}
           >
             <Grid item xs={12} sm={12}>
-              <List list={pokemons} path={path} />
+              <List list={searchResults} path={path} />
             </Grid>
           </Grid>
         </Container>
@@ -74,7 +81,5 @@ const Pokemons = (props) => {
     </div>
   );
 };
-
-Pokemons.propTypes = {};
 
 export default Pokemons;

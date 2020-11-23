@@ -17,7 +17,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from './styles';
 import useStyles from './styles';
-import Container from '@material-ui/core/Container';
 
 // Lazy loading with code splitting.
 const Home = lazy(() => import('./pages/home'));
@@ -37,7 +36,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>

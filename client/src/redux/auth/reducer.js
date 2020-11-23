@@ -1,11 +1,8 @@
 import {
-  LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  RESET_PASSWORD_SUCCESS,
-  RESET_PASSWORD_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
@@ -48,18 +45,6 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         isAuthenticated: false,
       };
-    // case RESET_PASSWORD_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     token: payload,
-    //   };
-    // case RESET_PASSWORD_FAIL:
-    //   return {
-    //     ...state,
-    //     errorCode: payload,
-    //     loading: false,
-    //   };
     default:
       return state;
   }
