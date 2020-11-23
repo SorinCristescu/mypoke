@@ -7,11 +7,12 @@ import Loader from '../../components/loader';
 import { Container, Typography, Grow, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
-const Pokeboard = () => {
+const Pokeboard = (props) => {
   const classes = useStyles();
   const loading = useSelector((state) => state.user.loading);
   const pokeboard = useSelector((state) => state.user.pokeboard);
   const dispatch = useDispatch();
+  const path = props.match.path;
 
   useEffect(() => {
     dispatch(createAndUpdatePokeboard());
@@ -39,7 +40,7 @@ const Pokeboard = () => {
               spacing={3}
             >
               <Grid item xs={12} sm={12}>
-                <List list={pokeboard.pokemons} />
+                <List list={pokeboard.pokemons} path={path} />
               </Grid>
             </Grid>
           </Container>

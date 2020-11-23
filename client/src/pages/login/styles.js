@@ -2,13 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   root: {
-    width: '100%',
+    width: '100vw',
     height: 'auto',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    padding: '20px 0',
+    padding: '10px 0',
   },
   form: {
     width: '350px',

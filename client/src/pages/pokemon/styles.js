@@ -1,21 +1,28 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
-  root: {
-    height: '100%',
+  wrapper: {
+    height: '100vh',
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   paper: {
-    width: '100%',
-    height: '80%',
+    width: '80vw',
+    marginTop: '100px',
+    height: '80vh',
+    margin: 'auto',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px 0',
+    padding: '10%',
   },
+  // grid: {
+  //   width: '60%',
+  //   height: '60%',
+  // },
   gridItem: {
     padding: '20px',
   },

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPokemons } from '../../redux/pokemons/actions';
 import { createAndUpdatePokeboard } from '../../redux/user/actions';
+import { capitalize } from '../../utils/helpers';
 
 import List from '../../components/list';
 import Loader from '../../components/loader';
@@ -47,7 +48,7 @@ const Pokemons = (props) => {
   return (
     <div className={classes.root}>
       <Typography variant="h5" align="center">
-        Wellcome {user.name}
+        Wellcome {capitalize(user.name)}
       </Typography>
       <Typography variant="body1" align="center">
         Now you can start choosing your favorite pokemons and add them to your

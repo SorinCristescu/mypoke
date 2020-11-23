@@ -17,9 +17,9 @@ const List = (props) => {
       alignItems="stretch"
       spacing={3}
     >
-      {list.map((item) => (
-        <Grid item xs={12} sm={6} md={3}>
-          <CardItem key={item.id} item={item} path={path} />
+      {list.map((item, index) => (
+        <Grid key={index} item xs={12} sm={6} md={3}>
+          <CardItem item={item} path={path} />
         </Grid>
       ))}
     </Grid>

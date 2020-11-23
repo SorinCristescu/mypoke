@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   loading: true,
+  loaded: false,
   pokeboard: null,
   pokemon: null,
 };
@@ -37,6 +38,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        loaded: true,
         pokemon: payload,
       };
     case GET_POKEMON_FAIL:
