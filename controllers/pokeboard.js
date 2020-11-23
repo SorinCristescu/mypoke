@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Pokeboard = require('../models/Pokeboard');
+const Pokemon = require('../models/Pokemon');
 const { check, validationResult } = require('express-validator');
 
 // GET POKEBOARD
@@ -32,8 +33,6 @@ exports.createOrUpdatePokeboard = async (req, res) => {
   pokeboardFields = {};
   pokeboardFields.user = req.user.id;
 
-  if (req.body.language) pokeboardFields.language = req.body.language;
-
   try {
     let pokeboard = await Pokeboard.findOne({
       user: req.user.id,
@@ -57,7 +56,7 @@ exports.createOrUpdatePokeboard = async (req, res) => {
     res.status(200).json(pokeboard);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({ errors: [{ msg: 'Server Error.' }] });
   }
 };
 
@@ -66,33 +65,32 @@ exports.createOrUpdatePokeboard = async (req, res) => {
 
 exports.addPokemon = async (req, res) => {
   const pokemon = req.body;
-  const { id, type, base, urlImage } = req.body;
+  // const { id, type, name, urlImage } = req.body;
   try {
     const pokeboard = await Pokeboard.findOne({ user: req.user.id });
+    // const user = await User.findById(req.user.id);
+    // let results = Object.keys(pokemon.name).map((key) => ({
+    //   language: String(key),
+    //   translation: pokemon.name[key],
+    // }));
+    // let newName = results
+    //   .filter((result) => result.language === user.language)
+    //   .map((item) => item.translation)[0];
 
-    let results = Object.keys(pokemon.name).map((key) => ({
-      language: String(key),
-      translation: pokemon.name[key],
-    }));
-    let newName = results
-      .filter((result) => result.language === pokeboard.language)
-      .map((item) => item.translation)[0];
+    // const newPokemon = {
+    //   id,
+    //   type,
+    //   urlImage,
+    //   name,
+    // };
 
-    const newPokemon = {
-      id,
-      type,
-      base,
-      urlImage,
-      name: newName,
-    };
-    console.log(newPokemon);
-    // pokeboard.pokemons.push(newPokemon);
+    pokeboard.pokemons.push(pokemon);
 
-    // await pokeboard.save();
+    await pokeboard.save();
     res.status(200).json(pokeboard);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).json({ errors: [{ msg: 'Server Error.' }] });
   }
 };
 
@@ -114,7 +112,7 @@ exports.deletePokemon = async (req, res) => {
     res.status(200).json(pokeboard);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ errors: [{ msg: 'Server Error.' }] });
   }
 };
 
@@ -124,18 +122,22 @@ exports.getPokemon = async (req, res) => {
   try {
     const pokeboard = await Pokeboard.findOne({ user: req.user.id });
 
-    const pokemonIndex = pokeboard.pokemons
-      .map((item) => item._id)
-      .indexOf(req.params.id);
+    const pokemon = await Pokemon.findById(req.params.id);
+    // const pokemonIndex = pokemons
+    //   .map((item) => item._id)
+    //   .indexOf(req.params.id);
 
-    const pokemon = pokeboard.pokemons[pokemonIndex];
+    // const pokemon = pokemons[pokemonIndex];
 
+    // console.log(pokemon);
     if (!pokemon) {
-      return res.status(400).json({ success: false });
+      return res
+        .status(400)
+        .json({ errors: [{ msg: 'There is no pokemon with this ID.' }] });
     }
     res.status(200).json(pokemon);
   } catch (err) {
     console.error(err.message);
-    res.status(400).send({ success: false });
+    res.status(400).json({ errors: [{ msg: 'Server Error.' }] });
   }
 };

@@ -68,82 +68,80 @@ const Login = (props) => {
     return <Redirect to="/pokemons" />;
   }
   return (
-    <Container maxWidth="xs">
-      <Paper className={classes.root}>
-        <img className={classes.logo} src={Logo} />
-        <Typography variant="h6">Wellcome to MyPoke</Typography>
-        <form
-          autoComplete="off"
-          noValidate
-          className={classes.form}
-          onSubmit={handleSubmit}
-        >
-          <div>
-            <TextField
-              className={classes.input}
-              name="email"
-              variant="outlined"
-              label="Email"
-              fullWidth
-              value={email}
-              onChange={(e) => handleChange(e)}
-            />
+    <div className={classes.root}>
+      <img className={classes.logo} src={Logo} />
+      <Typography variant="h6">Wellcome to MyPoke</Typography>
+      <form
+        autoComplete="off"
+        noValidate
+        className={classes.form}
+        onSubmit={handleSubmit}
+      >
+        <div>
+          <TextField
+            className={classes.input}
+            name="email"
+            variant="outlined"
+            label="Email"
+            fullWidth
+            value={email}
+            onChange={(e) => handleChange(e)}
+          />
 
-            <FormControl
-              className={clsx(classes.margin, classes.textField)}
-              variant="outlined"
-              fullWidth
-            >
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={password}
-                onChange={(e) => handleChange(e)}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                labelWidth={70}
-              />
-            </FormControl>
-          </div>
-
-          <Typography variant="p" component="p">
-            Sign in for your account
-          </Typography>
-          <Button
-            className={classes.buttonSubmit}
-            variant="contained"
-            color="primary"
-            size="large"
-            type="submit"
+          <FormControl
+            className={clsx(classes.margin, classes.textField)}
+            variant="outlined"
             fullWidth
           >
-            Login
-          </Button>
-          <div className={classes.redirect}>
-            <Typography variant="p" component="p">
-              Need a new acount?
-            </Typography>
-            <Link className={classes.link} to="/register">
-              Register your new account
-            </Link>
-          </div>
-        </form>
-      </Paper>
-    </Container>
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={password}
+              onChange={(e) => handleChange(e)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+          </FormControl>
+        </div>
+
+        <Typography variant="p" component="p">
+          Sign in for your account
+        </Typography>
+        <Button
+          className={classes.buttonSubmit}
+          variant="contained"
+          color="primary"
+          size="large"
+          type="submit"
+          fullWidth
+        >
+          Login
+        </Button>
+        <div className={classes.redirect}>
+          <Typography variant="p" component="p">
+            Need a new acount?
+          </Typography>
+          <Link className={classes.link} to="/register">
+            Register your new account
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 };
 

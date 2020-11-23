@@ -9,16 +9,18 @@ import { Container, Typography, Grow, Grid } from '@material-ui/core';
 
 const Pokeboard = (props) => {
   const loading = useSelector((state) => state.user.loading);
+  const pokeboard = useSelector((state) => state.user.pokeboard);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(createAndUpdatePokeboard());
-  // }, []);
+
+  useEffect(() => {
+    dispatch(createAndUpdatePokeboard(pokeboard.language));
+  }, []);
 
   if (loading) {
     return <Loader />;
   }
   return (
-    <Container maxWidth="lg">
+    <>
       <Typography variant="h5" align="center">
         Your collection
       </Typography>
@@ -31,12 +33,12 @@ const Pokeboard = (props) => {
             spacing={3}
           >
             <Grid item xs={12} sm={12}>
-              {/* <List list={mockDB} /> */}
+              <List list={pokeboard.pokemons} />
             </Grid>
           </Grid>
         </Container>
       </Grow>
-    </Container>
+    </>
   );
 };
 

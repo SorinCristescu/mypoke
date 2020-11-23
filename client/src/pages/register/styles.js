@@ -25,6 +25,7 @@ export default makeStyles({
   flag: {
     width: '25px',
     height: '25px',
+    paddingTop: '8px',
   },
   logo: {
     width: '60px',
@@ -41,4 +42,21 @@ export default makeStyles({
   textField: {
     // margin: '10px 0',
   },
+  legend: {
+    width: '100%',
+    marginTop: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  language: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  // fieldset: {
+  //   margin: '20px',
+  // },
 });

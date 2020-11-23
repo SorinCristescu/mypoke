@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, email, password } = req.body;
+  const { name, email, password, language } = req.body;
 
   try {
     // See if user exists
@@ -41,6 +41,7 @@ exports.register = async (req, res) => {
       name,
       email,
       password,
+      language,
       avatar,
     });
 

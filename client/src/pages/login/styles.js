@@ -6,7 +6,7 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     padding: '20px 0',
   },
   form: {

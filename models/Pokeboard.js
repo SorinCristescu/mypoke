@@ -5,10 +5,6 @@ const PokeboardSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
-  language: {
-    type: String,
-    default: 'english',
-  },
   pokemons: [
     {
       id: {
@@ -19,32 +15,6 @@ const PokeboardSchema = new mongoose.Schema({
       type: {
         type: [String],
         required: true,
-      },
-      base: {
-        HP: {
-          type: Number,
-          required: true,
-        },
-        Attack: {
-          type: Number,
-          required: true,
-        },
-        Defense: {
-          type: Number,
-          required: true,
-        },
-        SpAttack: {
-          type: Number,
-          required: true,
-        },
-        SpDefense: {
-          type: Number,
-          required: true,
-        },
-        Speed: {
-          type: Number,
-          required: true,
-        },
       },
       urlImage: {
         type: String,

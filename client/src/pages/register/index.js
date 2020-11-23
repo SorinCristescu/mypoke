@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/actions';
+import { createAndUpdatePokeboard } from '../../redux/user/actions';
 import { setAlert } from '../../redux/alert/actions';
 import { Link, Redirect } from 'react-router-dom';
+
+import JapanFlag from '../../assets/images/japan.svg';
+import ChinaFlag from '../../assets/images/china.svg';
+import EnglishFlag from '../../assets/images/uk.svg';
+import FrenchFlag from '../../assets/images/france.svg';
+import Logo from '../../assets/images/pikachu.svg';
 
 // Styles
 import useStyles from './styles';
@@ -20,7 +27,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
-import Logo from '../../assets/images/pikachu.svg';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
 
 const Register = (props) => {
   const classes = useStyles();
@@ -33,6 +43,7 @@ const Register = (props) => {
     email: '',
     password: '',
     confirmedPassword: '',
+    language: 'english',
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -47,14 +58,16 @@ const Register = (props) => {
         name,
         email,
         password,
+        language,
       };
       dispatch(register(newUser));
-
+      dispatch(createAndUpdatePokeboard());
       setPostData({
         name: '',
         email: '',
         password: '',
         confirmedPassword: '',
+        language: 'english',
       });
     }
   };
@@ -70,19 +83,19 @@ const Register = (props) => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const handleMouseDownPassword = (e) => {
+    e.preventDefault();
   };
 
-  const { name, email, password, confirmedPassword } = postData;
+  const { name, email, password, confirmedPassword, language } = postData;
 
   // Redirect if logged in
   if (isAuthenticated && user !== null) {
-    return <Redirect to="/language" />;
+    return <Redirect to="/pokemons" />;
   }
   return (
-    <Container maxWidth="xs">
-      <Paper className={classes.root}>
+    <>
+      <div className={classes.root}>
         <img className={classes.logo} src={Logo} />
         <Typography variant="h6">Wellcome to MyPoke</Typography>
 
@@ -98,7 +111,7 @@ const Register = (props) => {
             label="Name"
             fullWidth
             value={name}
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
           />
           <TextField
             name="email"
@@ -106,7 +119,7 @@ const Register = (props) => {
             label="Email"
             fullWidth
             value={email}
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
           />
           <FormControl
             className={clsx(classes.margin, classes.textField)}
@@ -121,7 +134,7 @@ const Register = (props) => {
               type={showPassword ? 'text' : 'password'}
               name="password"
               value={password}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -142,15 +155,15 @@ const Register = (props) => {
             variant="outlined"
             fullWidth
           >
-            <InputLabel htmlFor="outlined-adornment-password">
-              Confirmed Password
+            <InputLabel htmlFor="outlined-adornment-confirmedpassword">
+              Confirmed
             </InputLabel>
             <OutlinedInput
-              id="outlined-adornment-password"
+              id="outlined-adornment-confirmedpassword"
               type={showPassword ? 'text' : 'password'}
               name="confirmedPassword"
               value={confirmedPassword}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -165,7 +178,71 @@ const Register = (props) => {
               }
               labelWidth={70}
             />
+            <div className={classes.fieldset}>
+              <FormLabel
+                component="legend"
+                focused={false}
+                className={classes.legend}
+              >
+                Please choose your language.
+              </FormLabel>
+              <div className={classes.language}>
+                <FormControlLabel
+                  name="language"
+                  value="english"
+                  control={
+                    <Radio
+                      checked={language === 'english'}
+                      color="primary"
+                      onChange={handleChange}
+                    />
+                  }
+                  labelPlacement="top"
+                  label={<img className={classes.flag} src={EnglishFlag} />}
+                />
+                <FormControlLabel
+                  name="language"
+                  value="chinese"
+                  control={
+                    <Radio
+                      checked={language === 'chinese'}
+                      color="primary"
+                      onChange={handleChange}
+                    />
+                  }
+                  labelPlacement="top"
+                  label={<img className={classes.flag} src={ChinaFlag} />}
+                ></FormControlLabel>
+                <FormControlLabel
+                  name="language"
+                  value="japanese"
+                  control={
+                    <Radio
+                      checked={language === 'japanese'}
+                      color="primary"
+                      onChange={handleChange}
+                    />
+                  }
+                  labelPlacement="top"
+                  label={<img className={classes.flag} src={JapanFlag} />}
+                ></FormControlLabel>
+                <FormControlLabel
+                  name="language"
+                  value="french"
+                  control={
+                    <Radio
+                      checked={language === 'french'}
+                      color="primary"
+                      onChange={handleChange}
+                    />
+                  }
+                  labelPlacement="top"
+                  label={<img className={classes.flag} src={FrenchFlag} />}
+                ></FormControlLabel>
+              </div>
+            </div>
           </FormControl>
+
           <Typography variant="p" component="p" className={classes.message}>
             Register your new account
           </Typography>
@@ -188,8 +265,8 @@ const Register = (props) => {
             </Link>
           </div>
         </form>
-      </Paper>
-    </Container>
+      </div>
+    </>
   );
 };
 

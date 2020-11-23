@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPokemons } from '../../redux/pokemons/actions';
@@ -18,21 +18,45 @@ const Pokemons = (props) => {
   const pokemons = useSelector((state) => state.pokemons.pokemons);
   const loading = useSelector((state) => state.pokemons.loading);
   const dispatch = useDispatch();
+  const path = props.match.path;
+  const [searchQuerry, setSearchQuerry] = useState('');
+  const [searchResults, setSearchResults] = useState(pokemons);
+
   useEffect(() => {
     dispatch(getAllPokemons());
   }, []);
+
+  // useEffect(() => {
+  //   const results = pokemons.filter((pokemon) =>
+  //     pokemon.name.english.toLowerCase().includes(searchQuerry)
+  //   );
+  //   setSearchResults(results);
+  // }, [searchQuerry]);
+
+  const handleSearch = (e) => {
+    setSearchQuerry(e.target.value);
+  };
+
   if (loading) {
     return <Loader />;
   }
+
   return (
-    <Container>
+    <div className={classes.root}>
       <Typography variant="h5" align="center">
         Pokemons
       </Typography>
-      <InputBase className={classes.input} placeholder="Search pokemons" />
-      <IconButton type="submit" className={classes.iconButton}>
-        <SearchIcon />
-      </IconButton>
+      <div className={classes.search}>
+        <InputBase
+          className={classes.input}
+          placeholder="Search pokemons"
+          variant="outlined"
+          onChange={handleSearch}
+        />
+        <IconButton type="submit" className={classes.iconButton}>
+          <SearchIcon />
+        </IconButton>
+      </div>
       <Grow in>
         <Container>
           <Grid
@@ -42,12 +66,12 @@ const Pokemons = (props) => {
             spacing={3}
           >
             <Grid item xs={12} sm={12}>
-              <List list={pokemons} />
+              <List list={pokemons} path={path} />
             </Grid>
           </Grid>
         </Container>
       </Grow>
-    </Container>
+    </div>
   );
 };
 

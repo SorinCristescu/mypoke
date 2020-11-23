@@ -6,18 +6,17 @@ import Header from '../components/header';
 
 // Styles
 import useStyles from './styles';
-import Box from '@material-ui/core/Box';
 
 const Layout = ({ children }) => {
   const classes = useStyles();
 
   console.log('from layout', alert);
   return (
-    <Box className={classes.root}>
+    <div className={classes.root}>
       <Header />
 
       {children}
-    </Box>
+    </div>
   );
 };
 

@@ -13,24 +13,15 @@ import {
 } from './types';
 
 // Create & update user pokeboard.
-export const createAndUpdatePokeboard = ({ language }) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  const body = JSON.stringify({ language });
+export const createAndUpdatePokeboard = () => async (dispatch) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/pokeboard`,
-      body,
-      config
+      `${process.env.REACT_APP_API_URL}/pokeboard`
     );
     dispatch({
       type: CREATE_AND_UPDATE_POKEBOARD_SUCCESS,
       payload: response.data,
     });
-    // dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -60,7 +51,6 @@ export const addPokemon = (pokemon) => async (dispatch) => {
       type: ADD_POKEMON_SUCCESS,
       payload: response.data,
     });
-    // dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -82,7 +72,6 @@ export const deletePokemon = (pokemonId) => async (dispatch) => {
       type: DELETE_POKEMON_SUCCESS,
       payload: response.data,
     });
-    // dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {
@@ -104,7 +93,6 @@ export const getPokemon = (pokemonId) => async (dispatch) => {
       type: GET_POKEMON_SUCCESS,
       payload: response.data,
     });
-    // dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
     if (errors) {

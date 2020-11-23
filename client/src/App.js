@@ -24,9 +24,9 @@ const Home = lazy(() => import('./pages/home'));
 const Login = lazy(() => import('./pages/login'));
 const Register = lazy(() => import('./pages/register'));
 const Pokeboard = lazy(() => import('./pages/pokeboard'));
-const Details = lazy(() => import('./pages/details'));
+const Pokemon = lazy(() => import('./pages/pokemon'));
 const Pokemons = lazy(() => import('./pages/pokemons'));
-const Language = lazy(() => import('./pages/language'));
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -45,20 +45,19 @@ const App = () => {
         <CssBaseline />
         {/* <ErrorBoundary> */}
         <Suspense fallback={<Loader />}>
-          <Container className={classes.root} maxWidth="lg">
+          <div className={classes.wrapper}>
             <Alert />
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/login" exact component={Login} />
               <Route path="/register" exact component={Register} />
-              <PrivateRoute path="/language" exact component={Language} />
               <Layout>
                 <PrivateRoute path="/pokemons" exact component={Pokemons} />
                 <PrivateRoute path="/pokeboard" exact component={Pokeboard} />
-                <PrivateRoute path="/details/:id" exact component={Details} />
+                <PrivateRoute path="/pokemon/:id" exact component={Pokemon} />
               </Layout>
             </Switch>
-          </Container>
+          </div>
         </Suspense>
         {/* </ErrorBoundary> */}
       </ThemeProvider>

@@ -11,6 +11,6 @@ export default makeStyles({
   },
   cardAction: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
 });

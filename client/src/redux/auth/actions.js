@@ -34,13 +34,15 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register user.
-export const register = ({ name, email, password }) => async (dispatch) => {
+export const register = ({ name, email, password, language }) => async (
+  dispatch
+) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, language });
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/auth/register`,

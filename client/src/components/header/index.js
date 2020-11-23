@@ -20,7 +20,7 @@ const Header = (props) => {
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
-  const avatar = useSelector((state) => state.auth.user.avatar);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   return (
@@ -33,7 +33,7 @@ const Header = (props) => {
           {/* <Typography variant="h5" className={classes.title}>
           MyPoke
         </Typography> */}
-          <Link to="/pokmons">Pokemons</Link>
+          <Link to="/pokemons">Pokemons</Link>
           <Link to="/pokeboard">Pokeboard</Link>
         </div>
 
@@ -42,7 +42,7 @@ const Header = (props) => {
             <ExitToAppIcon />
           </IconButton>
 
-          {avatar ? <Avatar alt={avatar} /> : null}
+          {user ? <Avatar src={user.avatar} alt="avatar" /> : null}
         </div>
       </Toolbar>
     </AppBar>

@@ -5,8 +5,9 @@ import CardItem from '../card';
 import Loader from '../loader';
 import useStyles from './styles';
 
-const List = ({ list }) => {
+const List = (props) => {
   const classes = useStyles();
+  const { path, list } = props;
   return !list.length ? (
     <Loader />
   ) : (
@@ -18,7 +19,7 @@ const List = ({ list }) => {
     >
       {list.map((item) => (
         <Grid key={item.id} item xs={12} sm={6} md={3}>
-          <CardItem item={item} />
+          <CardItem item={item} path={path} />
         </Grid>
       ))}
     </Grid>
