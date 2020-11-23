@@ -8,12 +8,11 @@ import Loader from '../../components/loader';
 import { Container, Typography, Grow, Grid } from '@material-ui/core';
 
 const Pokeboard = (props) => {
-  // const pokemons = useSelector((state) => state.pokemons.pokemons);
   const loading = useSelector((state) => state.user.loading);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(createAndUpdatePokeboard());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(createAndUpdatePokeboard());
+  // }, []);
 
   if (loading) {
     return <Loader />;

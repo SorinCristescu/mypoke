@@ -26,6 +26,7 @@ const Register = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
   const alert = useSelector((state) => state.alert);
   const [postData, setPostData] = useState({
     name: '',
@@ -76,7 +77,7 @@ const Register = (props) => {
   const { name, email, password, confirmedPassword } = postData;
 
   // Redirect if logged in
-  if (isAuthenticated) {
+  if (isAuthenticated && user !== null) {
     return <Redirect to="/language" />;
   }
   return (

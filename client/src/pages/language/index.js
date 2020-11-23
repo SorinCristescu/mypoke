@@ -29,7 +29,8 @@ const Language = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const name = useSelector((state) => state.auth.user.name);
+  const loading = useSelector((state) => state.auth.loading);
+  const user = useSelector((state) => state.auth.user);
   const pokeboard = useSelector((state) => state.user.pokeboard);
   const alert = useSelector((state) => state.alert);
   const [language, setLanguage] = useState('english');
@@ -54,7 +55,7 @@ const Language = (props) => {
     <Container maxWidth="xs" className={classes.root}>
       <Paper className={classes.paper}>
         <img className={classes.logo} src={Logo} />
-        <Typography variant="h6">Wellcome {capitalize(name)}</Typography>
+        <Typography variant="h6">Wellcome {capitalize(user.name)}</Typography>
         <div>
           <div>
             <FormControl component="fieldset" className={classes.fieldset}>
@@ -92,8 +93,8 @@ const Language = (props) => {
                   label={<img className={classes.flag} src={ChinaFlag} />}
                 ></FormControlLabel>
                 <FormControlLabel
-                  name="japan"
-                  value="japan"
+                  name="japanese"
+                  value="japanese"
                   control={
                     <Radio checked={language === 'japan'} color="primary" />
                   }

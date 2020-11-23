@@ -66,20 +66,29 @@ exports.createOrUpdatePokeboard = async (req, res) => {
 
 exports.addPokemon = async (req, res) => {
   const pokemon = req.body;
-  // const name = pokemon.name[language];
-  // const newPokemon = {
-  //   id,
-  //   type,
-  //   base,
-  //   urlImage,
-  //   name,
-  // };
+  const { id, type, base, urlImage } = req.body;
   try {
     const pokeboard = await Pokeboard.findOne({ user: req.user.id });
 
-    pokeboard.pokemons.push(pokemon);
+    let results = Object.keys(pokemon.name).map((key) => ({
+      language: String(key),
+      translation: pokemon.name[key],
+    }));
+    let newName = results
+      .filter((result) => result.language === pokeboard.language)
+      .map((item) => item.translation)[0];
 
-    await pokeboard.save();
+    const newPokemon = {
+      id,
+      type,
+      base,
+      urlImage,
+      name: newName,
+    };
+    console.log(newPokemon);
+    // pokeboard.pokemons.push(newPokemon);
+
+    // await pokeboard.save();
     res.status(200).json(pokeboard);
   } catch (err) {
     console.error(err.message);

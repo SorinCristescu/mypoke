@@ -15,12 +15,7 @@ const PokeboardSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      name: {
-        english: String,
-        japanese: String,
-        chinese: String,
-        french: String,
-      },
+      name: String,
       type: {
         type: [String],
         required: true,

@@ -13,52 +13,37 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Logo from '../../assets/images/pikachu.svg';
+import Avatar from '@material-ui/core/Avatar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const Header = (props) => {
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
+  const avatar = useSelector((state) => state.auth.user.avatar);
   const dispatch = useDispatch();
 
-  const authLinks = (
-    <>
-      <Link to="/pokeboard">
-        <Typography variant="body1">Pokeboard</Typography>
-      </Link>
-      <Button onClick={() => dispatch(logout())}>Logout</Button>
-    </>
-  );
-
-  const guestLinks = (
-    <>
-      <Link to="/register">
-        <Typography variant="body1">Register</Typography>
-      </Link>
-      <Link to="/login">
-        <Typography variant="body1">Login</Typography>
-      </Link>
-    </>
-  );
-
   return (
-    <AppBar position="fixed" color="secondary">
+    <AppBar position="fixed" color="secondary" className={classes.root}>
       <Toolbar className={classes.toolbar}>
-        {/* <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton> */}
-        <Link to="/">
-          <img className={classes.logo} src={Logo} alt="Logo" />
-        </Link>
-        <Typography variant="h5" className={classes.title}>
+        <div className={classes.nav}>
+          <Link to="/">
+            <img className={classes.logo} src={Logo} alt="Logo" />
+          </Link>
+          {/* <Typography variant="h5" className={classes.title}>
           MyPoke
-        </Typography>
+        </Typography> */}
+          <Link to="/pokmons">Pokemons</Link>
+          <Link to="/pokeboard">Pokeboard</Link>
+        </div>
 
-        {!loading && isAuthenticated ? authLinks : guestLinks}
+        <div className={classes.logout}>
+          <IconButton color="primary" onClick={() => dispatch(logout())}>
+            <ExitToAppIcon />
+          </IconButton>
+
+          {avatar ? <Avatar alt={avatar} /> : null}
+        </div>
       </Toolbar>
     </AppBar>
   );

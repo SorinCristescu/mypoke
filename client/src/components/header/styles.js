@@ -6,6 +6,23 @@ export default makeStyles({
   },
   toolbar: {
     padding: '0 80px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  nav: {
+    width: '50%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'fex-start',
+  },
+  logout: {
+    width: '50%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'fex-end',
   },
   logo: {
     width: '50px',

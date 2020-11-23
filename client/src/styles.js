@@ -74,7 +74,7 @@ export const theme = createMuiTheme({
 export default makeStyles({
   root: {
     // padding: 100,
-    width: '100vw',
+    width: '100%',
     height: '100vh',
     display: 'flex',
     alignItems: 'center',
