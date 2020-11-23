@@ -3,15 +3,24 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/actions';
 import { setAlert } from '../../redux/alert/actions';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 // Styles
 import useStyles from './styles';
+import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
+import Logo from '../../assets/images/pikachu.svg';
 
 const Register = (props) => {
   const classes = useStyles();
@@ -24,6 +33,8 @@ const Register = (props) => {
     password: '',
     confirmedPassword: '',
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,16 +65,26 @@ const Register = (props) => {
     });
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const { name, email, password, confirmedPassword } = postData;
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to="/pokemons" />;
+    return <Redirect to="/language" />;
   }
   return (
     <Container maxWidth="xs">
       <Paper className={classes.root}>
-        <Typography variant="h6">Register</Typography>
+        <img className={classes.logo} src={Logo} />
+        <Typography variant="h6">Wellcome to MyPoke</Typography>
+
         <form
           autoComplete="off"
           noValidate
@@ -86,32 +107,85 @@ const Register = (props) => {
             value={email}
             onChange={(e) => handleChange(e)}
           />
-          <TextField
-            name="password"
+          <FormControl
+            className={clsx(classes.margin, classes.textField)}
             variant="outlined"
-            label="Password"
             fullWidth
-            value={password}
-            onChange={(e) => handleChange(e)}
-          />
-          <TextField
-            name="confirmedPassword"
+          >
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={password}
+              onChange={(e) => handleChange(e)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+          </FormControl>
+          <FormControl
+            className={clsx(classes.margin, classes.textField)}
             variant="outlined"
-            label="Confirmed Password"
             fullWidth
-            value={confirmedPassword}
-            onChange={(e) => handleChange(e)}
-          />
+          >
+            <InputLabel htmlFor="outlined-adornment-password">
+              Confirmed Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              name="confirmedPassword"
+              value={confirmedPassword}
+              onChange={(e) => handleChange(e)}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+          </FormControl>
+          <Typography variant="p" component="p" className={classes.message}>
+            Register your new account
+          </Typography>
           <Button
             className={classes.buttonSubmit}
             variant="contained"
             color="primary"
-            syze="large"
+            size="large"
             type="submit"
             fullWidth
           >
             Register
           </Button>
+          <div className={classes.redirect}>
+            <Typography variant="p" component="p">
+              If you have an account.
+            </Typography>
+            <Link className={classes.link} to="/login">
+              Login in your account!
+            </Link>
+          </div>
         </form>
       </Paper>
     </Container>

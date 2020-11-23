@@ -9,4 +9,8 @@ export default makeStyles({
     height: 140,
     backgroundSize: 'contain',
   },
+  cardAction: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
 });

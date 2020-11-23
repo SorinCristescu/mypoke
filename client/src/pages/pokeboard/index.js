@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { createAndUpdatePokeboard } from '../../redux/user/actions';
 
 import List from '../../components/list';
+import Loader from '../../components/loader';
 import { Container, Typography, Grow, Grid } from '@material-ui/core';
-import { mockDB } from '../../mockDB';
 
 const Pokeboard = (props) => {
+  // const pokemons = useSelector((state) => state.pokemons.pokemons);
+  const loading = useSelector((state) => state.user.loading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(createAndUpdatePokeboard());
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Container maxWidth="lg">
       <Typography variant="h5" align="center">
@@ -20,7 +32,7 @@ const Pokeboard = (props) => {
             spacing={3}
           >
             <Grid item xs={12} sm={12}>
-              <List list={mockDB} />
+              {/* <List list={mockDB} /> */}
             </Grid>
           </Grid>
         </Container>

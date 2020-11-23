@@ -1,3 +1,4 @@
+import { yellow } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 // import MontserratBlack from './assets/fonts/Montserrat/Montserrat-Black.ttf';
@@ -72,6 +73,11 @@ export const theme = createMuiTheme({
 
 export default makeStyles({
   root: {
-    padding: 100,
+    // padding: 100,
+    width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

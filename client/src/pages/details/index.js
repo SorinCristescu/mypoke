@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Components
 import Chart from '../../components/chart';
+import Loader from '../../components/loader';
+
 // Styles
 import useStyles from './styles';
 import Grid from '@material-ui/core/Grid';
@@ -12,8 +15,13 @@ import Typography from '@material-ui/core/Typography';
 
 const Details = (props) => {
   const classes = useStyles();
+  const loading = useSelector((state) => state.user.loading);
   const dataSet = [100, 19, 3, 5, 2, 3];
   // const data = [HP, Attack, Defense, SpAttack, SpDefense, Speed];
+
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <Container maxWidth="md">
       <Paper className={classes.root}>

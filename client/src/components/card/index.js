@@ -13,6 +13,8 @@ const CardItem = ({ item }) => {
   const classes = useStyles();
 
   const { id, name, type, base, urlImage } = item;
+
+  const handleClick = () => {};
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -30,12 +32,15 @@ const CardItem = ({ item }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.cardAction}>
         {/* <Button size="small" color="primary">
           Share
         </Button> */}
         <Button size="small" color="primary">
-          + ADD
+          + ADD TO COLLECTION
+        </Button>
+        <Button size="small" color="primary">
+          - Remove
         </Button>
       </CardActions>
     </Card>
