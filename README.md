@@ -4,13 +4,13 @@
 
 ## Usage
 
-## Install Dependencies
+### Install Dependencies
 
 ```
 npm install
 ```
 
-## Run app
+### Run app
 
 ```
 
