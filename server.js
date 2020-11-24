@@ -49,10 +49,6 @@ app.use('/api/v1/pokemons', pokemonsRouter);
 // ====================
 app.use(express.static('public'));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
-
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
