@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Styles
-import "./ErrorFallback.css";
+import './ErrorFallback.css';
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   return (
@@ -378,7 +378,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
         <h4>404</h4>
         <div role="alert">
           <p>Something went wrong:</p>
-          <pre>{error.message}</pre>
+          {/* <pre>{error.message}</pre> */}
           <Link to="/login">
             <button onClick={resetErrorBoundary}>Try again</button>
           </Link>
