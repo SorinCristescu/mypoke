@@ -45,6 +45,7 @@ export const register = ({ name, email, password, language }) => async (
       body,
       config
     );
+
     dispatch({
       type: REGISTER_SUCCESS,
       payload: response.data,
