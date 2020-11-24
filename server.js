@@ -45,12 +45,12 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/pokeboard', pokeboardRouter);
 app.use('/api/v1/pokemons', pokemonsRouter);
 
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    msg: 'Page not founded.',
-  });
-});
+// app.use((req, res) => {
+//   res.status(404).json({
+//     success: false,
+//     msg: 'Page not founded.',
+//   });
+// });
 
 // SERVING STATIC FILES
 // ====================
