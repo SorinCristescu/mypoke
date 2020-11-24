@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const connectDB = require('./config/db');
 const cors = require('cors');
 const colors = require('colors');
+const path = require('path');
 
 // CONFIG DOTENV
 // =============
@@ -38,10 +39,6 @@ const authRouter = require('./routes/api/auth');
 const pokeboardRouter = require('./routes/api/pokeboard');
 const pokemonsRouter = require('./routes/api/pokemons');
 
-// SERVING STATIC FILES
-// ====================
-app.use(express.static('public'));
-
 // USE ROUTES
 // ==========
 app.use('/api/v1/auth', authRouter);
@@ -54,6 +51,17 @@ app.use((req, res) => {
     msg: 'Page not founded.',
   });
 });
+
+// SERVING STATIC FILES
+// ====================
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+  app.use(express.static('public'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
