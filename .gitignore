@@ -5,7 +5,7 @@
 
 # /client/.env
 # /config/config.env
-/config/config.production.env
+# /config/config.production.env
 
 /client/.pnp
 /client/.pnp.js
