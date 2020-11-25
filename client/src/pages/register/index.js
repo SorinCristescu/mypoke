@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/actions';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../redux/auth/actions";
 
-import { setAlert } from '../../redux/alert/actions';
-import { Link, Redirect } from 'react-router-dom';
+import { setAlert } from "../../redux/alert/actions";
+import { Link, Redirect } from "react-router-dom";
 
-import JapanFlag from '../../assets/images/japan.svg';
-import ChinaFlag from '../../assets/images/china.svg';
-import EnglishFlag from '../../assets/images/uk.svg';
-import FrenchFlag from '../../assets/images/france.svg';
-import Logo from '../../assets/images/pikachu.svg';
+import JapanFlag from "../../assets/images/japan.svg";
+import ChinaFlag from "../../assets/images/china.svg";
+import EnglishFlag from "../../assets/images/uk.svg";
+import FrenchFlag from "../../assets/images/france.svg";
+import Logo from "../../assets/images/pikachu.svg";
 
 // Styles
-import useStyles from './styles';
-import clsx from 'clsx';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
+import useStyles from "./styles";
+import clsx from "clsx";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@material-ui/core/IconButton";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormLabel from "@material-ui/core/FormLabel";
+import Radio from "@material-ui/core/Radio";
 
 const Register = (props) => {
   const classes = useStyles();
@@ -34,11 +34,11 @@ const Register = (props) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
   const [postData, setPostData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmedPassword: '',
-    language: 'english',
+    name: "",
+    email: "",
+    password: "",
+    confirmedPassword: "",
+    language: "english",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -46,8 +46,8 @@ const Register = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmedPassword) {
-      console.log('Password do not match');
-      dispatch(setAlert('Passwords do not match!', 'error', true));
+      console.log("Password do not match");
+      dispatch(setAlert("Passwords do not match!", "error", true));
     } else {
       const newUser = {
         name,
@@ -57,11 +57,11 @@ const Register = (props) => {
       };
       dispatch(register(newUser));
       setPostData({
-        name: '',
-        email: '',
-        password: '',
-        confirmedPassword: '',
-        language: 'english',
+        name: "",
+        email: "",
+        password: "",
+        confirmedPassword: "",
+        language: "english",
       });
     }
   };
@@ -99,6 +99,7 @@ const Register = (props) => {
           onSubmit={handleSubmit}
         >
           <TextField
+            className={classes.textField}
             name="name"
             variant="outlined"
             label="Name"
@@ -124,7 +125,7 @@ const Register = (props) => {
             </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="password"
               value={password}
               onChange={handleChange}
@@ -153,7 +154,7 @@ const Register = (props) => {
             </InputLabel>
             <OutlinedInput
               id="outlined-adornment-confirmedpassword"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="confirmedPassword"
               value={confirmedPassword}
               onChange={handleChange}
@@ -185,7 +186,7 @@ const Register = (props) => {
                   value="english"
                   control={
                     <Radio
-                      checked={language === 'english'}
+                      checked={language === "english"}
                       color="primary"
                       onChange={handleChange}
                     />
@@ -204,7 +205,7 @@ const Register = (props) => {
                   value="chinese"
                   control={
                     <Radio
-                      checked={language === 'chinese'}
+                      checked={language === "chinese"}
                       color="primary"
                       onChange={handleChange}
                     />
@@ -219,7 +220,7 @@ const Register = (props) => {
                   value="japanese"
                   control={
                     <Radio
-                      checked={language === 'japanese'}
+                      checked={language === "japanese"}
                       color="primary"
                       onChange={handleChange}
                     />
@@ -234,7 +235,7 @@ const Register = (props) => {
                   value="french"
                   control={
                     <Radio
-                      checked={language === 'french'}
+                      checked={language === "french"}
                       color="primary"
                       onChange={handleChange}
                     />
