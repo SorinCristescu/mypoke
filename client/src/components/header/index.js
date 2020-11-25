@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <AppBar position="fixed" color="secondary" className={classes.root}>
-      <Toolbar className={classes.toolbar} maxWidth="lg">
+      <Toolbar className={classes.toolbar}>
         <div className={classes.nav}>
           <Link to="/">
             <img className={classes.logo} src={Logo} alt="Logo" />
