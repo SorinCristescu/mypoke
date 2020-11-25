@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { createAndUpdatePokeboard } from '../../redux/user/actions';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createAndUpdatePokeboard } from "../../redux/user/actions";
 
-import List from '../../components/list';
-import Loader from '../../components/loader';
-import { Container, Typography, Grow, Grid } from '@material-ui/core';
-import useStyles from './styles';
+import List from "../../components/list";
+import Loader from "../../components/loader";
+import { Container, Typography, Grid } from "@material-ui/core";
+import useStyles from "./styles";
 
 const Pokeboard = (props) => {
   const classes = useStyles();
@@ -23,7 +23,7 @@ const Pokeboard = (props) => {
   }
   return (
     <div className={classes.root}>
-      <Typography variant="h5" align="center">
+      <Typography variant="h5" align="center" style={{ margin: "20px" }}>
         Your collection
       </Typography>
       {pokeboard.pokemons.length === 0 ? (
@@ -31,20 +31,18 @@ const Pokeboard = (props) => {
           is empty. Please go back and start add pokemons to your pokeboard!
         </Typography>
       ) : (
-        <Grow in>
-          <Container>
-            <Grid
-              container
-              justify="space-between"
-              alignItems="stretch"
-              spacing={3}
-            >
-              <Grid item xs={12} sm={12}>
-                <List list={pokeboard.pokemons} path={path} />
-              </Grid>
+        <Container>
+          <Grid
+            container
+            justify="space-between"
+            alignItems="stretch"
+            spacing={3}
+          >
+            <Grid item xs={12} sm={12}>
+              <List list={pokeboard.pokemons} path={path} />
             </Grid>
-          </Container>
-        </Grow>
+          </Grid>
+        </Container>
       )}
     </div>
   );

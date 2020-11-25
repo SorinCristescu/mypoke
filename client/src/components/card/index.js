@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { addPokemon, deletePokemon } from "../../redux/user/actions";
 
 import Card from "@material-ui/core/Card";
+import Grow from "@material-ui/core/Grow";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -29,47 +30,54 @@ const CardItem = (props) => {
     dispatch(deletePokemon(props.item._id));
   };
   return (
-    <Card className={classes.root}>
-      <Link to={`/pokemon/${_id}`}>
-        <CardActionArea>
-          <CardMedia className={classes.media} image={urlImage} />
-          <CardContent>
-            <Typography gutterBottom align="center" variant="h5" component="h2">
-              {name}
-            </Typography>
-            <Typography
-              gutterBottom
-              variant="body1"
-              align="center"
-              component="p"
+    <Grow in>
+      <Card className={classes.root}>
+        <Link to={`/pokemon/${_id}`}>
+          <CardActionArea>
+            <CardMedia className={classes.media} image={urlImage} />
+            <CardContent>
+              <Typography
+                gutterBottom
+                align="center"
+                variant="h5"
+                component="h2"
+              >
+                {name}
+              </Typography>
+              <Typography
+                gutterBottom
+                variant="body1"
+                align="center"
+                component="p"
+              >
+                See details
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Link>
+        <CardActions className={classes.cardAction}>
+          {props.path === "/pokemons" ? (
+            <Fab
+              size="medium"
+              color="primary"
+              onClick={handleAddPokemon}
+              aria-label="add"
             >
-              See details
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Link>
-      <CardActions className={classes.cardAction}>
-        {props.path === "/pokemons" ? (
-          <Fab
-            size="medium"
-            color="primary"
-            onClick={handleAddPokemon}
-            aria-label="add"
-          >
-            <AddIcon />
-          </Fab>
-        ) : (
-          <Fab
-            size="medium"
-            color="secondary"
-            onClick={handleDeletePokemon}
-            aria-label="add"
-          >
-            <DeleteIcon />
-          </Fab>
-        )}
-      </CardActions>
-    </Card>
+              <AddIcon />
+            </Fab>
+          ) : (
+            <Fab
+              size="medium"
+              color="secondary"
+              onClick={handleDeletePokemon}
+              aria-label="add"
+            >
+              <DeleteIcon />
+            </Fab>
+          )}
+        </CardActions>
+      </Card>
+    </Grow>
   );
 };
 
