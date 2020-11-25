@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { createAndUpdatePokeboard } from '../../redux/user/actions';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createAndUpdatePokeboard } from "../../redux/user/actions";
 
-import List from '../../components/list';
-import Loader from '../../components/loader';
-import { Container, Typography, Grow, Grid } from '@material-ui/core';
-import useStyles from './styles';
+import List from "../../components/list";
+import Loader from "../../components/loader";
+import { Container, Typography, Grow, Grid } from "@material-ui/core";
+import useStyles from "./styles";
 
 const Pokeboard = (props) => {
   const classes = useStyles();
@@ -16,7 +16,7 @@ const Pokeboard = (props) => {
 
   useEffect(() => {
     dispatch(createAndUpdatePokeboard());
-  }, [dispatch]);
+  }, []);
 
   if (loading) {
     return <Loader />;

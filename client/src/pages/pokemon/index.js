@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPokemon } from '../../redux/user/actions';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPokemon } from "../../redux/user/actions";
 
 // Components
-import Chart from '../../components/chart';
-import Loader from '../../components/loader';
+import Chart from "../../components/chart";
+import Loader from "../../components/loader";
 
 // Styles
-import useStyles from './styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
+import useStyles from "./styles";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
 
 const Pokemon = (props) => {
   const classes = useStyles();
@@ -22,7 +22,7 @@ const Pokemon = (props) => {
 
   useEffect(() => {
     dispatch(getPokemon(id));
-  }, [dispatch]);
+  }, []);
 
   if (loaded) {
     const { base, type, urlImage, name } = pokemon;
@@ -65,6 +65,9 @@ const Pokemon = (props) => {
                 {name}
               </Typography>
               <div className={classes.chips}>
+                <Typography variant="h6" align="center">
+                  Skills:
+                </Typography>
                 {type &&
                   type.map((chip, index) => (
                     <Chip
