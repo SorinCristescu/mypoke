@@ -8,8 +8,8 @@
 /client/coverage
 
 # misc
-/config/.config.env
-/client/.env
+# /config/.config.env
+# /client/.env
 /client/.DS_Store
 /client/.env.local
 /client/.env.development.local
