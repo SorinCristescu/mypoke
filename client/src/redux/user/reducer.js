@@ -7,7 +7,7 @@ import {
   DELETE_POKEMON_FAIL,
   GET_POKEMON_SUCCESS,
   GET_POKEMON_FAIL,
-} from './types';
+} from "./types";
 
 const initialState = {
   loading: true,

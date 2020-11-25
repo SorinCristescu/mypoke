@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
+import Grow from "@material-ui/core/Grow";
 
 const Pokemon = (props) => {
   const classes = useStyles();
@@ -22,68 +23,70 @@ const Pokemon = (props) => {
 
   useEffect(() => {
     dispatch(getPokemon(id));
-  }, []);
+  }, [id]);
 
   if (loaded) {
     const { base, type, urlImage, name } = pokemon;
     const { HP, Attack, Defense, SpAttack, SpDefense, Speed } = base;
     const dataSet = [HP, Attack, Defense, SpAttack, SpDefense, Speed];
     return (
-      <div className={classes.wrapper}>
-        <Paper className={classes.paper}>
-          <Grid
-            wrap
-            container
-            spacing={0}
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
+      <Grow in>
+        <div className={classes.wrapper}>
+          <Paper className={classes.paper}>
             <Grid
-              item
-              xs={12}
-              sm={12}
-              md={6}
-              lg={6}
+              wrap
+              container
+              spacing={0}
+              direction="row"
               justify="center"
               alignItems="center"
-              className={classes.gridItem}
             >
-              <img src={urlImage} alt="pokemon" className={classes.image} />
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={6}
-              lg={6}
-              justify="center"
-              alignItems="center"
-              className={classes.gridItem}
-            >
-              <Typography variant="h4" align="center">
-                {name}
-              </Typography>
-              <div className={classes.chips}>
-                <Typography variant="h6" align="center">
-                  Skills:
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={6}
+                justify="center"
+                alignItems="center"
+                className={classes.gridItem}
+              >
+                <img src={urlImage} alt="pokemon" className={classes.image} />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={6}
+                justify="center"
+                alignItems="center"
+                className={classes.gridItem}
+              >
+                <Typography variant="h4" align="center">
+                  {name}
                 </Typography>
-                {type &&
-                  type.map((chip, index) => (
-                    <Chip
-                      key={index}
-                      className={classes.chip}
-                      color="primary"
-                      size="small"
-                      label={chip}
-                    />
-                  ))}
-              </div>
-              <Chart dataSet={dataSet} />
+                <div className={classes.chips}>
+                  <Typography variant="h6" align="center">
+                    Skills:
+                  </Typography>
+                  {type &&
+                    type.map((chip, index) => (
+                      <Chip
+                        key={index}
+                        className={classes.chip}
+                        color="primary"
+                        size="small"
+                        label={chip}
+                      />
+                    ))}
+                </div>
+                <Chart dataSet={dataSet} />
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-      </div>
+          </Paper>
+        </div>
+      </Grow>
     );
   } else {
     return <Loader />;

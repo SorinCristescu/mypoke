@@ -17,19 +17,19 @@ const Chart = ({ dataSet }) => {
       {
         data: dataSet,
         backgroundColor: [
+          "rgb(153, 102, 255)",
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
           "rgb(255, 206, 86)",
           "rgb(75, 192, 192)",
-          "rgb(153, 102, 255)",
           "rgb(255, 159, 64)",
         ],
         borderColor: [
+          "rgb(153, 102, 255)",
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
           "rgb(255, 206, 86)",
           "rgb(75, 192, 192)",
-          "rgb(153, 102, 255)",
           "rgb(255, 159, 64)",
         ],
         borderWidth: 0,
@@ -37,6 +37,9 @@ const Chart = ({ dataSet }) => {
     ],
   };
   const options = {
+    legend: {
+      display: false,
+    },
     scales: {
       yAxes: [
         {
