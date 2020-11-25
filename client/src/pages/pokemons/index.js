@@ -9,7 +9,7 @@ import Loader from "../../components/loader";
 
 import useStyles from "./styles";
 import { Container, Typography, Grow, Grid } from "@material-ui/core";
-
+import TextField from "@material-ui/core/TextField";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
@@ -50,16 +50,12 @@ const Pokemons = (props) => {
       <div className={classes.search}>
         <InputBase
           className={classes.input}
-          placeholder="Search pokemons"
-          variant="outlined"
+          placeholder="Search pokemons..."
           onChange={handleSearch}
           value={searchQuerry}
         />
-        <IconButton type="submit" className={classes.iconButton}>
-          <SearchIcon />
-        </IconButton>
+        <SearchIcon />
       </div>
-      {/* <Grow in> */}
       <Container>
         <Grid
           container
@@ -72,7 +68,6 @@ const Pokemons = (props) => {
           </Grid>
         </Grid>
       </Container>
-      {/* </Grow> */}
     </div>
   );
 };
