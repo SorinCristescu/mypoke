@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllPokemons } from '../../redux/pokemons/actions';
-import { createAndUpdatePokeboard } from '../../redux/user/actions';
-import { capitalize } from '../../utils/helpers';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllPokemons } from "../../redux/pokemons/actions";
+import { createAndUpdatePokeboard } from "../../redux/user/actions";
+import { capitalize } from "../../utils/helpers";
 
-import List from '../../components/list';
-import Loader from '../../components/loader';
+import List from "../../components/list";
+import Loader from "../../components/loader";
 
-import useStyles from './styles';
-import { Container, Typography, Grow, Grid } from '@material-ui/core';
+import useStyles from "./styles";
+import { Container, Typography, Grow, Grid } from "@material-ui/core";
 
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
+import InputBase from "@material-ui/core/InputBase";
+import SearchIcon from "@material-ui/icons/Search";
+import IconButton from "@material-ui/core/IconButton";
 
 const Pokemons = (props) => {
   const classes = useStyles();
@@ -21,30 +21,23 @@ const Pokemons = (props) => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const path = props.match.path;
-  const [searchQuerry, setSearchQuerry] = useState('');
-  const [searchResults, setSearchResults] = useState(pokemons);
+  const [searchQuerry, setSearchQuerry] = useState("");
 
   useEffect(() => {
     dispatch(getAllPokemons());
     dispatch(createAndUpdatePokeboard());
-    setSearchResults(pokemons);
-  }, []);
-
-  useEffect(() => {
-    const results = pokemons.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchQuerry)
-    );
-    setSearchResults(results);
   }, []);
 
   const handleSearch = (e) => {
     setSearchQuerry(e.target.value);
   };
-  console.log(searchQuerry);
+
   if (loading) {
     return <Loader />;
   }
-
+  let filteredPokemons = pokemons.filter((pokemon) =>
+    pokemon.name.toLowerCase().startsWith(searchQuerry.toLowerCase())
+  );
   return (
     <div className={classes.root}>
       <Typography variant="h5" align="center">
@@ -60,6 +53,7 @@ const Pokemons = (props) => {
           placeholder="Search pokemons"
           variant="outlined"
           onChange={handleSearch}
+          value={searchQuerry}
         />
         <IconButton type="submit" className={classes.iconButton}>
           <SearchIcon />
@@ -74,7 +68,7 @@ const Pokemons = (props) => {
           spacing={3}
         >
           <Grid item xs={12} sm={12}>
-            <List list={pokemons} path={path} />
+            <List list={filteredPokemons} path={path} />
           </Grid>
         </Grid>
       </Container>
