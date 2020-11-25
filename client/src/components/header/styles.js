@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles({
   root: {
     width: "100%",
+    padding: "0 5%",
   },
   toolbar: {
     padding: "0 5%",
