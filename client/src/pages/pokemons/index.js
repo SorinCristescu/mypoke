@@ -33,7 +33,7 @@ const Pokemons = (props) => {
   };
 
   if (loading) {
-    return <Loader />;
+    return <Loader message="Pokemons will apear in few seconds..." />;
   }
   let filteredPokemons = pokemons.filter((pokemon) =>
     pokemon.name.toLowerCase().startsWith(searchQuerry.toLowerCase())
