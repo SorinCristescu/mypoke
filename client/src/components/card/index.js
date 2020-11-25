@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { addPokemon, deletePokemon } from '../../redux/user/actions';
+import React from "react";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { addPokemon, deletePokemon } from "../../redux/user/actions";
 
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-import useStyles from './styles';
+import useStyles from "./styles";
 
 const CardItem = (props) => {
   const classes = useStyles();
@@ -26,7 +26,7 @@ const CardItem = (props) => {
     dispatch(addPokemon(props.item));
   };
   const handleDeletePokemon = (e) => {
-    dispatch(deletePokemon(props.item));
+    dispatch(deletePokemon(props.item._id));
   };
   return (
     <Card className={classes.root}>
@@ -49,7 +49,7 @@ const CardItem = (props) => {
         </CardActionArea>
       </Link>
       <CardActions className={classes.cardAction}>
-        {props.path === '/pokemons' ? (
+        {props.path === "/pokemons" ? (
           <Fab
             size="medium"
             color="primary"
