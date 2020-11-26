@@ -58,16 +58,13 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// server = http.createServer(app);
-// server.maxConnections = 5;
-
-// currentConnections = server.getConnections();
-
-// console.log("Current number of connection:", server.getConnections());
+// Limit max concurrently connection to the server
+server = http.createServer(app);
+server.maxConnections = 5;
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(
     `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
   );
