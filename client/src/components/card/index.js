@@ -35,7 +35,7 @@ const CardItem = (props) => {
     <Grow in>
       <Card className={classes.root}>
         <Link to={`/pokemon/${_id}`}>
-          <CardActionArea>
+          <CardActionArea className={classes.actionArea}>
             <CardMedia className={classes.media} image={urlImage} />
             <CardContent>
               <Typography
@@ -44,15 +44,16 @@ const CardItem = (props) => {
                 variant="h5"
                 component="h2"
               >
-                {name}
+                {name || name !== "" ? name : "Unknown"}
               </Typography>
               <Typography
+                className={classes.invitation}
                 gutterBottom
                 variant="body1"
                 align="center"
                 component="p"
               >
-                See details
+                Allow me to introduce myself!
               </Typography>
             </CardContent>
           </CardActionArea>
