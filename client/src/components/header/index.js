@@ -5,9 +5,7 @@ import { logout } from "../../redux/auth/actions";
 
 // Styles
 import useStyles from "./styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
+import { AppBar, Toolbar, IconButton, Tooltip } from "@material-ui/core";
 import Logo from "../../assets/images/pikachu.svg";
 import Avatar from "@material-ui/core/Avatar";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -28,9 +26,11 @@ const Header = () => {
           <Link to="/pokeboard">Pokeboard</Link>
         </div>
         <div className={classes.logout}>
-          <IconButton color="primary" onClick={() => dispatch(logout())}>
-            <ExitToAppIcon />
-          </IconButton>
+          <Tooltip title="Sign out" arrow>
+            <IconButton color="primary" onClick={() => dispatch(logout())}>
+              <ExitToAppIcon />
+            </IconButton>
+          </Tooltip>
           {user ? <Avatar src={user.avatar} alt="avatar" /> : null}
         </div>
       </Toolbar>

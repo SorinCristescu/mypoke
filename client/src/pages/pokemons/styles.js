@@ -8,7 +8,7 @@ export default makeStyles({
     alignItems: "center",
     justifyContent: "center",
   },
-  search: {
+  filter: {
     width: "300px",
     height: "40px",
     padding: "10px",
@@ -27,31 +27,23 @@ export default makeStyles({
     padding: "10px",
   },
 
-  // search: {
-  //   position: "relative",
-  //   borderRadius: "1px solid #000000",
-  //   backgroundColor: "#ffffff",
-  //   marginRight: "10px",
-  //   marginLeft: 0,
-  //   width: "100%",
-  // },
-  // searchIcon: {
-  //   padding: "0 10px",
-  //   height: "100%",
-  //   position: "absolute",
-  //   pointerEvents: "none",
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  // },
-  // inputRoot: {
-  //   color: "inherit",
-  // },
-  // inputInput: {
-  //   padding: "10 10 10 0",
-  //   // vertical padding + font size from searchIcon
-  //   paddingLeft: `calc(1em + '10px')`,
-
-  //   width: "100%",
-  // },
+  sort: {
+    width: "60px",
+    marginLeft: "20px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  search: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    width: "15px",
+    height: "auto",
+  },
 });

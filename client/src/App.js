@@ -48,6 +48,7 @@ const App = () => {
           FallbackComponent={ErrorFallback}
           onReset={() => {
             // Here we can reset the state of the app so the error doesn't happen again
+            window.location.reload();
           }}
         >
           <Suspense fallback={<Loader />}>

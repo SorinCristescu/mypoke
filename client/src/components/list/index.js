@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import CardItem from '../card';
-import Loader from '../loader';
-import Pagination from '../pagination';
-import useStyles from './styles';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+
+import Grid from "@material-ui/core/Grid";
+import CardItem from "../card";
+import Loader from "../loader";
+import Pagination from "../pagination";
+import useStyles from "./styles";
 
 const List = (props) => {
   const classes = useStyles();
