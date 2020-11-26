@@ -2,8 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles({
   wrapper: {
-    height: "100vh",
-
+    height: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -19,10 +18,6 @@ export default makeStyles({
     justifyContent: "center",
     padding: "10%",
   },
-  // grid: {
-  //   width: '60%',
-  //   height: '60%',
-  // },
   gridItem: {
     padding: "20px",
   },

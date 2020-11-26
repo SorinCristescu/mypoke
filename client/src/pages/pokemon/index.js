@@ -23,7 +23,7 @@ const Pokemon = (props) => {
 
   useEffect(() => {
     dispatch(getPokemon(id));
-  }, [id]);
+  }, []);
 
   if (loaded) {
     const { base, type, urlImage, name } = pokemon;

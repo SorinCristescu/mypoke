@@ -38,4 +38,7 @@ export default makeStyles({
   textField: {
     margin: "10px 0",
   },
+  buttonSubmit: {
+    color: "#000000",
+  },
 });

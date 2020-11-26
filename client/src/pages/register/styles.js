@@ -51,4 +51,7 @@ export default makeStyles({
     alignItems: "center",
     justifyContent: "center",
   },
+  buttonSubmit: {
+    color: "#000000",
+  },
 });
