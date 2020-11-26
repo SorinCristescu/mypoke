@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/auth/actions';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/auth/actions";
+import { Link, Redirect } from "react-router-dom";
 
 // Styles
-import useStyles from './styles';
-import clsx from 'clsx';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
-import Logo from '../../assets/images/pikachu.svg';
+import useStyles from "./styles";
+import clsx from "clsx";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import IconButton from "@material-ui/core/IconButton";
+import Logo from "../../assets/images/pikachu.svg";
 
 const Login = () => {
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [postData, setPostData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -37,8 +37,8 @@ const Login = () => {
     };
     dispatch(login(credentials));
     setPostData({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
 
@@ -93,7 +93,7 @@ const Login = () => {
             </InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="password"
               value={password}
               onChange={(e) => handleChange(e)}

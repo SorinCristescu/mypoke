@@ -24,7 +24,7 @@ const Pokeboard = (props) => {
   return (
     <div className={classes.root}>
       <Typography variant="h5" align="center" style={{ margin: "20px" }}>
-        Your collection
+        Your pokeboard
       </Typography>
       {pokeboard.pokemons.length === 0 ? (
         <Typography variant="h5" align="center">

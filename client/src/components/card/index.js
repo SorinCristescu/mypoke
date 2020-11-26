@@ -58,7 +58,7 @@ const CardItem = (props) => {
         <CardActions className={classes.cardAction}>
           {props.path === "/pokemons" ? (
             <Fab
-              size="medium"
+              size="large"
               color="primary"
               onClick={handleAddPokemon}
               aria-label="add"
@@ -67,7 +67,7 @@ const CardItem = (props) => {
             </Fab>
           ) : (
             <Fab
-              size="medium"
+              size="large"
               color="secondary"
               onClick={handleDeletePokemon}
               aria-label="add"
