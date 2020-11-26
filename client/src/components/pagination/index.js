@@ -16,6 +16,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
       {pageNumbers.map((number) => (
         <Fab
           className={classes.root}
+          elevation={0}
           size="small"
           color="secondary"
           key={number}

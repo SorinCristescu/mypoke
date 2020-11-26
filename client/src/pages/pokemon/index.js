@@ -8,11 +8,7 @@ import Loader from "../../components/loader";
 
 // Styles
 import useStyles from "./styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Chip from "@material-ui/core/Chip";
-import Grow from "@material-ui/core/Grow";
+import { Grid, Paper, Typography, Chip, Grow } from "@material-ui/core";
 
 const Pokemon = (props) => {
   const classes = useStyles();

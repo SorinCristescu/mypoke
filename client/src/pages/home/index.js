@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Container from "@material-ui/core/Container";
-import Grow from "@material-ui/core/Grow";
-import Typography from "@material-ui/core/Typography";
+import { Container, Grow, Typography, Button } from "@material-ui/core";
 import Logo from "../../assets/images/pikachu.svg";
-import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
 
 const Home = () => {
